@@ -127,3 +127,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+/graphql-poc/sql_bookend.db
+/graphql-poc/sql_moviend.db

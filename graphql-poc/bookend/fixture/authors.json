@@ -1,0 +1,32 @@
+[
+  {
+    "first_name": "Frank",
+    "last_name": "Herbert",
+    "date_of_birth": "08-10-1920"
+  },
+  {
+    "first_name": "J.R.R.",
+    "last_name": "Tolkien",
+    "date_of_birth": "03-01-1892"
+  },
+  {
+    "first_name": "Jane",
+    "last_name": "Austen",
+    "date_of_birth": "16-12-1775"
+  },
+  {
+    "first_name": "Dante",
+    "last_name": "Alighieri",
+    "date_of_birth": "01-01-1265"
+  },
+  {
+    "first_name": "Ernest",
+    "last_name": "Hemingway",
+    "date_of_birth": "21-07-1899"
+  },
+  {
+    "first_name": "Douglas",
+    "last_name": "Adams",
+    "date_of_birth": "11-03-1952"
+  }
+]

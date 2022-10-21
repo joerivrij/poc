@@ -1,0 +1,67 @@
+[
+  {
+    "title": "The Lord of the Rings",
+    "author_id": 2,
+    "publishing_year": 1954
+  },
+  {
+    "title": "The Hobbit",
+    "author_id": 2,
+    "publishing_year": 1937
+  },
+  {
+    "title": "The Silmarillion",
+    "author_id": 2,
+    "publishing_year": 1977
+  },
+  {
+    "title": "Dune",
+    "author_id": 1,
+    "publishing_year": 1965
+  },
+  {
+    "title": "Dune: Messiah",
+    "author_id": 1,
+    "publishing_year": 1969
+  },
+  {
+    "title": "Childern Of Dune",
+    "author_id": 1,
+    "publishing_year": 1976
+  },
+  {
+    "title": "Divina Commedia",
+    "author_id": 4,
+    "publishing_year": 1320
+  },
+  {
+    "title": "La Vita Nuova",
+    "author_id": 4,
+    "publishing_year": 1294
+  },
+  {
+    "title": "Pride and Prejudice",
+    "author_id": 3,
+    "publishing_year": 1813
+  },
+  {
+    "title": "Emma",
+    "author_id": 3,
+    "publishing_year": 1815
+  },
+  {
+    "title": "Hitchhiker\u0027s Guide to the Galaxy",
+    "author_id": 6,
+    "publishing_year": 1979
+  },
+  {
+    "title": "The Old Man and the Sea",
+    "author_id": 5,
+    "publishing_year": 1952
+  },
+  {
+    "title": "A Farewell to Arms",
+    "author_id": 5,
+    "publishing_year": 1929
+  }
+]

@@ -129,3 +129,4 @@ dmypy.json
 .pyre/
 /graphql-poc/sql_bookend.db
 /graphql-poc/sql_moviend.db
+/graphql-poc/identifier.sqlite

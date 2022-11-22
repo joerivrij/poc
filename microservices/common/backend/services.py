@@ -1,7 +1,26 @@
 import requests
 
 BOOKEND_URL = "http://127.0.0.1:5002"
+AUTHOREND_URL = "http://127.0.0.1:5003"
 MOVIEND_URL = "http://127.0.0.1:5001"
+
+
+def create_author(body):
+    url = AUTHOREND_URL + "/authors"
+    r = requests.post(url=url, json=body)
+    return r
+
+
+def create_books(body):
+    url = BOOKEND_URL + "/books"
+    r = requests.post(url=url, json=body)
+    return r
+
+
+def create_movie(body):
+    url = MOVIEND_URL + "/movies"
+    r = requests.post(url=url, json=body)
+    return r
 
 
 def get_movies():
@@ -40,14 +59,14 @@ def get_books():
 
 
 def get_authors():
-    url = BOOKEND_URL + "/authors"
+    url = AUTHOREND_URL + "/authors"
     r = requests.get(url)
     authors = r.json()
     return authors
 
 
 def get_author(id):
-    url = BOOKEND_URL + "/authors/" + id
+    url = AUTHOREND_URL + "/authors/" + id
     r = requests.get(url)
     author = r.json()
     return author
@@ -58,10 +77,3 @@ def get_books_by_author(author_id):
     r = requests.get(url)
     books = r.json()
     return books
-
-
-def get_movie(filter):
-    url = MOVIEND_URL + "/movies"
-    r = requests.get(url)
-    movies = r.json()
-    return movies

@@ -1,5 +1,5 @@
-from common import schemas
-from . import backends
+from common.schemas import graphql
+from common.backend import services as backends
 import graphene
 from fastapi import FastAPI
 from graphene import ObjectType, String, List, Field, Int
@@ -7,16 +7,16 @@ from starlette_graphene3 import GraphQLApp, make_graphiql_handler
 
 
 class Query(ObjectType):
-    get_all_movies = Field(schemas.MovieListGq)
-    get_all_books = List(schemas.BooksGraphql)
-    get_all_authors = List(schemas.AuthorGraphql)
-    get_movies = Field(List(schemas.MoviesGraphql), title=String())
-    get_author_tree = Field(schemas.AuthorBooks, id=String())
-    get_complete_tree = Field(schemas.CombinedTree, id=String(), year=Int())
+    get_all_movies = Field(graphql.MovieListGq)
+    get_all_books = List(graphql.BooksGraphql)
+    get_all_authors = List(graphql.AuthorGraphql)
+    get_movies = Field(List(graphql.MoviesGraphql), title=String())
+    get_author_tree = Field(graphql.AuthorBooks, id=String())
+    get_complete_tree = Field(graphql.CombinedTree, id=String(), year=Int())
 
     async def resolve_get_all_movies(self, info):
         movies = backends.get_movies()
-        d = schemas.MovieListGq
+        d = graphql.MovieListGq
         d.movies = movies
         return d
 
@@ -31,7 +31,7 @@ class Query(ObjectType):
     async def resolve_get_author_tree(self, info, id):
         author = backends.get_author(id=id)
         books = backends.get_books_by_author(author_id=author["id"])
-        resp = schemas.AuthorBooks
+        resp = graphql.AuthorBooks
         resp.id = author["id"]
         resp.name = author["first_name"] + " " + author["last_name"]
         resp.date_of_birth = author["date_of_birth"]
@@ -49,10 +49,10 @@ class Query(ObjectType):
         return m
 
     async def resolve_get_complete_tree(self, info, id):
-        resp = schemas.CombinedTree
+        resp = graphql.CombinedTree
         author = backends.get_author(id=id)
         books = backends.get_books_by_author(author_id=author["id"])
-        auth = schemas.AuthorBooks
+        auth = graphql.AuthorBooks
         auth.id = author["id"]
         auth.name = author["first_name"] + " " + author["last_name"]
         auth.date_of_birth = author["date_of_birth"]

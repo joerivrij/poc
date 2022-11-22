@@ -28,5 +28,10 @@
     "first_name": "Douglas",
     "last_name": "Adams",
     "date_of_birth": "11-03-1952"
+  },
+  {
+	"first_name":"Mark",
+	"last_name": "Twain",
+	"date_of_birth": "30-11-1835"
   }
 ]

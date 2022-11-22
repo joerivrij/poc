@@ -1,8 +1,8 @@
-from fastapi import Depends, FastAPI
+from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy.orm import Session
-from . import models, repo
+from . import models, repo, validator
 from .database import SessionLocal, engine
-from common import schemas
+from common.schemas import sql as schemas
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -48,8 +48,11 @@ async def fetch_movies_with_lookup(look_up: str, db: Session = Depends(get_db)):
     return movies
 
 
-@app.post("/movies", response_model=schemas.Movie)
-def create_new_author(movie: schemas.MovieCreate, db: Session = Depends(get_db)):
+@app.post("/movies", status_code=201)
+def create_new_movie(movie: schemas.MovieCreate, db: Session = Depends(get_db)):
+    valid = validator.validate_movie(db=db, movie=movie)
+    if not valid["valid"]:
+        raise HTTPException(status_code=400, detail=valid)
     repo.create_movie(db=db, movie=movie)
     return {"success": True}
 

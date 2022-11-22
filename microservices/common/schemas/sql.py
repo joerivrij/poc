@@ -1,7 +1,6 @@
 from pydantic import BaseModel
 from dataclasses import dataclass
 from typing import Any, TypeVar, Type
-from graphene import String, ObjectType, List, Field
 
 T = TypeVar("T")
 
@@ -111,20 +110,16 @@ class BookBase(BaseModel):
     publishing_year: str
 
 
+class Book(BookBase):
+    author_id: str
+
+
 class BookCreate(BookBase):
     pass
 
 
 class BookBulkCreate(BookBase):
     author_id: int
-
-
-class Book(BookBase):
-    id: int
-    author_id: int
-
-    class Config:
-        orm_mode = True
 
 
 class AuthorBase(BaseModel):
@@ -139,47 +134,14 @@ class AuthorCreate(AuthorBase):
 
 class Author(AuthorBase):
     id: int
+    uuid: str
     full_name: str
-    items: list[Book] = []
 
     class Config:
         orm_mode = True
 
 
-class MoviesGraphql(ObjectType):
-    id = String()
-    title = String(required=True)
-    year = String()
-    imdb = String()
-    type = String()
-    image = String()
-    description = String()
-
-
-class MovieListGq(ObjectType):
-    movies = List(MoviesGraphql)
-
-
-class BooksGraphql(ObjectType):
-    id = String()
-    title = String(required=True)
-    publishing_year = String()
-
-
-class AuthorGraphql(ObjectType):
-    id = String()
-    first_name = String()
-    last_name = String()
-    date_of_birth = String()
-
-
-class AuthorBooks(ObjectType):
-    id = String()
-    name = String()
-    date_of_birth = String()
-    books = List(BooksGraphql)
-
-
-class CombinedTree(ObjectType):
-    author = Field(AuthorBooks)
-    movies = List(MoviesGraphql)
+class CombinedTree(BaseModel):
+    author: AuthorCreate
+    books: list[BookCreate] = []
+    movies: list[MovieCreate] = []

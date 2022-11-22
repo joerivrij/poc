@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 
 from . import models
-from common import schemas
+from common.schemas import sql as schemas
 
 
 def get_movie_by_id(db: Session, movie_id: int):
@@ -10,6 +10,11 @@ def get_movie_by_id(db: Session, movie_id: int):
 
 def get_movie_by_year(db: Session, year: int):
     return db.query(models.Movie).filter(models.Movie.year == year).all()
+
+
+def get_movie_by_imdb(db: Session, imdb: str):
+    movie = db.query(models.Movie).filter(models.Movie.imdb == imdb).first()
+    return movie
 
 
 def get_movies(db: Session, skip: int = 0, limit: int = 100):
